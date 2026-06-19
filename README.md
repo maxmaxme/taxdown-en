@@ -20,6 +20,17 @@ The script intercepts those `fetch` requests and, for every `…/es/…` file, f
 
 Strings hardcoded in the app bundle (not in the JSON files), and date/number formats, stay Spanish.
 
+Only `es` and `en` are available on TaxDown's CDN, so those are the two supported languages.
+
+## Switching language
+
+English is on by default. To switch, either:
+
+- click the round **EN / ES** button in the bottom-right corner of the page (the label shows the current language), or
+- use the userscript-manager menu (Tampermonkey/Violentmonkey icon) — **English** / **Español**, with `●` marking the active one.
+
+Either way the page reloads and the choice is remembered across sessions.
+
 ## Install
 
 1. Install a userscript manager — [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/).
