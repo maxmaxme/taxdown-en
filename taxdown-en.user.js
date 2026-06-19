@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TaxDown EN locale
 // @namespace    https://github.com/maxmaxme/taxdown-en
-// @version      1.2.0
+// @version      1.3.0
 // @description  Switch the app.taxdown.es UI to English (merges en/ over es/, es as per-key fallback). Toggle via an on-page button or the userscript menu.
 // @author       maxmaxme
 // @match        https://app.taxdown.es/*
@@ -66,6 +66,13 @@
   //   https://assets.taxdown.es/assets/translations/<lng>/<vertical>/<ns>.json
   const RE = /(https:\/\/assets\.taxdown\.es\/assets\/translations\/)es(\/)/;
 
+  // TaxDown's en/ files are machine-translated and sometimes clobber technical
+  // values — e.g. an `icon` field "IconSheetM" becomes a sentence, which the app
+  // looks up as a React component and crashes on (React error #130). Keep the
+  // Spanish value for keys that hold identifiers, not human-readable text.
+  const keepSpanish = (key, esVal) =>
+    /icon$/i.test(key) || (typeof esVal === 'string' && /^Icon[A-Z0-9]/.test(esVal));
+
   const deepMerge = (base, over) => {
     const out = Array.isArray(base) ? base.slice() : { ...base };
     for (const k in over) {
@@ -73,7 +80,7 @@
       const ov = over[k];
       out[k] = (ov && typeof ov === 'object' && bv && typeof bv === 'object')
         ? deepMerge(bv, ov)
-        : ov;
+        : (keepSpanish(k, bv) ? bv : ov);
     }
     return out;
   };
