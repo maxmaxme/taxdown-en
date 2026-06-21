@@ -8,7 +8,7 @@ Userscript that switches the [app.taxdown.es](https://app.taxdown.es) UI to **En
 2. Install the script: **https://raw.githubusercontent.com/maxmaxme/taxdown-en/main/taxdown-en.user.js**
 3. Open [app.taxdown.es](https://app.taxdown.es) — it's in English.
 
-Auto-updates via `@updateURL`. Switch language with the **EN/ES** button (bottom-right) or the userscript menu; the choice is remembered.
+Auto-updates via `@updateURL`. To go back to Spanish, just disable the script in your userscript manager and reload.
 
 ## How it works
 
